@@ -4,6 +4,9 @@ class RequestUrlInfoTask(CronTab):
     def __init__(self, count=1, time=1) -> None:
         super().__init__(count, time)
 
-    async def run():
+    def run(self):
         print('run')
+        pass
+
+    def callback(self):
         pass
