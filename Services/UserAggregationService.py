@@ -6,5 +6,4 @@ class UserAggregationService():
         pass
 
     def getUserInfo(self,request_context=[]):
-        userInfo = self.userResponse.getInfoPl(request_context)
-        pass
+        return self.userResponse.getInfoPl(request_context)

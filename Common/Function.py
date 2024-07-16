@@ -20,12 +20,20 @@ def custom_serializer(obj):
         return obj.isoformat()
     raise TypeError("Type not serializable")
 
-# from Common.Redis import RedisService
 import Config.queue as queue_map
-async def ReturnDict(redis,request,code=1,msg='ok',data=[]): 
-    _return = {'code':code,'msg':msg,'data':data}
+async def ReturnDict(redis,request,_return): 
+    if _return == None:
+        _return={'code':1,'msg':'ok','data':[]}
     request['response_context'] = json.dumps(_return)
-    print(json.dumps(request))
     await redis.rpush(queue_map.SYSTEM_LOG_REDIS_QUEUE_KEY,json.dumps(request))
     return _return
-    
+
+def ReturnJson(code=1,msg='ok',data=[]):
+    return {'code':code,'msg':msg,'data':data}
+
+def CheckParams(data,keys):
+    _ = None
+    for _k in keys:
+        if _k not in data:
+            return ReturnJson(0,_k + '参数不存在')
+    return _

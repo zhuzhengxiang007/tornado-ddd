@@ -15,8 +15,8 @@ class UserHandler(Handler):
     async def get(self):
         now = datetime.now()
         print(now.strftime("%Y-%m-%d %H:%M:%S.%f"))
-        data = self.rootAggService.getUserInfo()
-        _return = await ReturnDict(self.redis,self.request_context)
+        data = self.rootAggService.getUserInfo(self.request_context)
+        _return = await ReturnDict(self.redis,self.request_context,data)
         self.write(_return)
         _end = datetime.now()
         print(_end.strftime("%Y-%m-%d %H:%M:%S.%f"))

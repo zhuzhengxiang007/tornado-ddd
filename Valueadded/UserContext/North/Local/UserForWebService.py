@@ -6,5 +6,5 @@ class UserForWebService():
         pass
 
     def getUserInfo(self,request_context=[]):
-        result = self.repository.getUserInfo(request_context)
+        result = self.repository.getUserInfo(request_context['request_context'])
         return result.__dict__

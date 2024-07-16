@@ -1,5 +1,6 @@
 import uuid
-class User:
+from Common.Share.BaseEntity import BaseEntity
+class User(BaseEntity):
     def __init__(self,
                  uid=None,
                  account=None,
@@ -16,4 +17,9 @@ class User:
         self.role = role
         self.power = power
         self.member_id = member_id
+        pass
+
+    # 实体渲染
+    def setAll(self):
+
         pass
