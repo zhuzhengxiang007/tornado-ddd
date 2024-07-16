@@ -25,6 +25,7 @@ import Config.queue as queue_map
 async def ReturnDict(redis,request,code=1,msg='ok',data=[]): 
     _return = {'code':code,'msg':msg,'data':data}
     request['response_context'] = json.dumps(_return)
-    redis.rpush(queue_map.SYSTEM_LOG_REDIS_QUEUE_KEY,json.dumps(request))
+    print(json.dumps(request))
+    await redis.rpush(queue_map.SYSTEM_LOG_REDIS_QUEUE_KEY,json.dumps(request))
     return _return
     

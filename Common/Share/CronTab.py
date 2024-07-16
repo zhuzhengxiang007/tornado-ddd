@@ -15,7 +15,7 @@ class CronTab(ABC):
         # 创建一个 IOLoop 实例
         io_loop = tornado.ioloop.IOLoop.current()
 
-        # 创建一个 PeriodicCallback 实例，每隔self.time秒执行一次 periodic_task 函数
+        # 创建一个 PeriodicCallback 实例，每隔self.time秒执行一次 run 函数
         callback = tornado.ioloop.PeriodicCallback(self.run, self.time*1000)
 
         # 启动定时任务
