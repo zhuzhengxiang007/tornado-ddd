@@ -2,6 +2,9 @@ class BaseEntity:
     def __init__(self) -> None:
         pass
 
+    def initialize(self, session):
+        self.session = session
+
     def property_exists(self,key):
         if hasattr(self, key):
             return True

@@ -3,8 +3,9 @@ from Common.Function import CheckParams
 import json
 
 class UserResponse():
-    def __init__(self) -> None:
-        self.userForWebService = UserForWebService()
+    def __init__(self,session) -> None:
+        self.session = session
+        self.userForWebService = UserForWebService(self.session)
         pass
 
     def getInfoPl(self,request_context=[]):

@@ -21,3 +21,6 @@ class Handler(tornado.web.RequestHandler):
         # 启动心跳检测任务（每隔一段时间执行一次心跳检测）
         tornado.ioloop.PeriodicCallback(lambda: asyncio.create_task(heartbeat(self.redis)), 5000).start()
         super().__init__(application, request, **kwargs)
+
+    def initialize(self, session):
+        self.session = session

@@ -13,7 +13,7 @@ def init_redis():
 async def heartbeat(redis):
     try:
         await redis.ping()
-        print("Redis connection is active.")
+        #print("Redis connection is active.")
     except aioredis.RedisError as e:
         print(f"Error: {e}")
         # 可以在这里重新连接 Redis 或者进行其他处理

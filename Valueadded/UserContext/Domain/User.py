@@ -1,5 +1,7 @@
 import uuid
 from Common.Share.BaseEntity import BaseEntity
+from Model.UserModel import UserModel
+
 class User(BaseEntity):
     def __init__(self,
                  uid=None,
@@ -20,6 +22,8 @@ class User(BaseEntity):
         pass
 
     # 实体渲染
-    def setAll(self):
-
+    async def setAllByUid(self,session):
+        async with session() as session:
+            user = await session.get(UserModel, self.uid)
+            print(user)
         pass

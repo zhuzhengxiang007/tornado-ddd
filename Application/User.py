@@ -5,12 +5,15 @@ from tornado.web import Application
 from Services.UserAggregationService import UserAggregationService
 from Common.Function import ReturnDict
 from Common.Share.BaseController import Handler
-
 from datetime import datetime
+
 class UserHandler(Handler):
     def __init__(self, application: Application, request: HTTPServerRequest, **kwargs: Any) -> None:
-        self.rootAggService = UserAggregationService()
         super().__init__(application, request, **kwargs)
+
+    def initialize(self, session):
+        self.session = session
+        self.rootAggService = UserAggregationService(self.session)
 
     async def get(self):
         now = datetime.now()

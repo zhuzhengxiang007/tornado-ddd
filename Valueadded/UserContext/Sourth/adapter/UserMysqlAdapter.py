@@ -2,8 +2,9 @@ from Valueadded.UserContext.Sourth.port.UserRepository import UserRepository
 from Valueadded.UserContext.Domain.User import User
 
 class UserMysqlAdapter(UserRepository):
-    def __init__(self) -> None:
-        self.entity = User()
+    def __init__(self,session) -> None:
+        self.session = session
+        self.entity = User(self.session)
         super().__init__()
 
     def dto(self, do=...):
@@ -17,5 +18,5 @@ class UserMysqlAdapter(UserRepository):
     
     def getUserInfo(self, context=...):
         self.voToDto(context)
-        
+        self.entity.setAllByUid(self.session)
         return self.entity
